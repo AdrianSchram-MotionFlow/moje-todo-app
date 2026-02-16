@@ -1,12 +1,12 @@
 [
   {
-    "id": "1",
-    "title": "Nainstalovat Next.js",
-    "isDone": true
-  },
-  {
     "id": "2",
     "title": "Udělat první commit",
     "isDone": false
+  },
+  {
+    "id": "501c9608-887d-4e24-a3c7-3132424a9a00",
+    "title": "skibidi",
+    "isDone": true
   }
 ]
