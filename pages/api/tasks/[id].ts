@@ -6,21 +6,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     let tasks = getTasks();
     const taskIndex = tasks.findIndex((t) => t.id === id);
 
-    // 404: Pokud úkol neexistuje
     if (taskIndex === -1) {
         return res.status(404).json({ message: 'Úkol nenalezen' });
     }
 
-    // GET: Detail jednoho úkolu
     if (req.method === 'GET') {
         return res.status(200).json(tasks[taskIndex]);
     }
 
-    // PUT: Úprava (přepnutí stavu Hotovo/Nehotovo)
     if (req.method === 'PUT') {
         const { isDone } = req.body;
 
-        // Aktualizujeme jen pokud nám přišla nová hodnota
         if (isDone !== undefined) {
             tasks[taskIndex].isDone = isDone;
         }
@@ -29,9 +25,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.status(200).json(tasks[taskIndex]);
     }
 
-    // DELETE: Smazání úkolu
     if (req.method === 'DELETE') {
-        tasks = tasks.filter((t) => t.id !== id); // Vyfiltrujeme ten smazaný
+        tasks = tasks.filter((t) => t.id !== id);
         saveTasks(tasks);
         return res.status(200).json({ message: 'Úkol smazán' });
     }

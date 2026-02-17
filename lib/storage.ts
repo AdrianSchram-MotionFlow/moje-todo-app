@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-// Cesta k souboru data/tasks.json
 const filePath = path.join(process.cwd(), 'data', 'tasks.json');
 
 export interface Task {
@@ -9,8 +8,6 @@ export interface Task {
     title: string;
     isDone: boolean;
 }
-
-// Funkce pro načtení úkolů
 export const getTasks = (): Task[] => {
     if (!fs.existsSync(filePath)) {
         return [];
@@ -23,7 +20,6 @@ export const getTasks = (): Task[] => {
     }
 };
 
-// Funkce pro uložení úkolů
 export const saveTasks = (tasks: Task[]) => {
     fs.writeFileSync(filePath, JSON.stringify(tasks, null, 2));
 };
